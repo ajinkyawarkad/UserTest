@@ -1,0 +1,62 @@
+<ion-content class="content"> 
+    <div class="contaier-login">
+     
+        <ion-grid>
+            <ion-row justify-content-center>
+               <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+                    <h1 >Login</h1>   
+                </ion-col>
+            </ion-row>
+            <img src="assets/imgs/avtar.png" width="70px" id="avtar">
+            <br>
+
+            <ion-row>
+                <ion-col>
+                        <ion-item >  
+                            <ion-input type="text" [(ngModel)]="user.email" placeholder="Email"></ion-input>
+                            <ion-icon  name="contact" item-left></ion-icon>
+                        </ion-item>
+
+                        <br />
+
+                        <ion-item >
+                          <ion-icon  name="lock" item-left></ion-icon>
+                          <ion-input type="password" [(ngModel)]="user.password" placeholder="Password" [type]="showPassword ? 'text' : 'password'" clearOnEdit="false"></ion-input>
+                          <button (click)="onPasswordToggle()" ion-button clear small item-end icon-only>
+                            <ion-icon [name]="showPassword ? 'eye-off' : 'eye'"></ion-icon>
+                          </button>
+                        </ion-item>
+
+                        <br />
+                    
+                </ion-col>
+            </ion-row>
+           
+            <ion-row>
+                <ion-col>   
+                    <button ion-button block color="success" type="submit" (click)="login(user)">
+                        Login
+                    </button>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col style="text-align: center;font-size: medium;"> 
+                  Don't have an account yet ?  
+               </ion-col>
+            </ion-row>
+          <ion-row (click)="register()">
+              <ion-col style="text-align: center;font-weight: bold;font-size: large;"> 
+                          Sign up here
+              </ion-col>
+          </ion-row>
+          <ion-row (click)="ResetPassword()">
+              <ion-col style="text-align: center;font-size:medium;"> 
+                  Forget Password?
+              </ion-col>
+          </ion-row>
+          </ion-grid>
+       
+    </div>
+  
+</ion-content>

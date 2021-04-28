@@ -1,0 +1,43 @@
+<ion-split-pane when="lg">
+
+  <ion-menu [content]="content" id="menu">
+  <ion-header>
+    <ion-toolbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-card style="height: 20%;">
+      <ion-list >
+        <ion-item color="none">
+           
+                <div  >
+                  <div style="text-align:center;">
+                      <ion-icon style="color:black;font-size:40px;" name="contact" item-left></ion-icon>
+                  </div>
+                  <h2 style="color:black;text-align:center">Welcome User</h2>
+                 <br>
+                </div>
+        </ion-item>
+        
+      </ion-list>
+    </ion-card>
+    <br>
+    <ion-list > 
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-icon [name]="p.icon" item-start ></ion-icon>
+        {{p.title}}
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage"  #content main swipeBackEnabled="false"></ion-nav>
+  </ion-split-pane>

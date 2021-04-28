@@ -1,0 +1,92 @@
+<ion-header>
+
+	<ion-navbar>
+	  <ion-title>Leads Details</ion-title>
+	</ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding="true" class="has-header">
+	<!-- <ion-item>
+	  <ion-label>Assign to Handler</ion-label>
+	  <ion-select >
+		<ion-option>Handler 1</ion-option>
+		<ion-option >Handler 2</ion-option>
+		<ion-option >Handler 3</ion-option>
+	  </ion-select>
+	</ion-item> -->
+	<ion-searchbar showCancelButton="always" style="width: 100%;"></ion-searchbar>
+	<table>
+		  <thead>
+		  <tr>
+			  <th>First Name</th>
+			  <th>Last Name</th>
+			  <th>Status</th>
+			  <th>Action</th>
+			  <th>Phone </th>
+		<th>Previous Remark</th>
+		<th>Action</th>
+		  </tr>
+		  </thead>
+		  <tbody>
+		  <tr>
+			  <td style="text-decoration: underline;color: blue;" (click)="calldetails()" >James</td>
+			  <td>Matmanfmnn</td>
+			  <td>Chief</td>
+			  <td>Lettuce Green</td>
+			  <td style="text-decoration: underline;color: blue;" (click)="gotocall()">
+				  6758989966
+				  <div style="display: inline-block;margin-left: 40px;">
+				  <ion-icon name="call" ></ion-icon>
+				  </div> </td>
+			  <td>Digby Green</td>
+			  <td> 
+				  <ion-icon name="create" (click)="edit()"></ion-icon>
+				  <div style="display: inline-block;margin-left: 40px;">
+				  <ion-icon name="trash" ></ion-icon>
+				  </div>
+			  </td>
+		  </tr>
+		  <tr>
+			<td style="text-decoration: underline;color: blue;" (click)="calldetails()">The</td>
+			<td>Tick</td>
+			<td>Crimef</td>
+			<td>Blue</td>
+			<td style="text-decoration: underline;color: blue;" (click)="gotocall()">
+			  9876543267
+				  <div style="display: inline-block;margin-left: 40px;">
+				  <ion-icon name="call" ></ion-icon>
+				  </div>
+		  </td>
+			<td>John Smith</td>
+			<td>
+			  <ion-icon name="create" (click)="edit()"></ion-icon>
+			  <div style="display: inline-block;margin-left: 40px;">
+			  <ion-icon name="trash" ></ion-icon>
+			  </div>
+		   </td>
+		  </tr>
+		  <tr>
+			<td style="text-decoration: underline;color: blue;" (click)="calldetails()">Jokey</td>
+			<td>Smurf</td>
+			<td>Giving</td>
+			<td>White</td>
+			<td style="text-decoration: underline;color: blue;" (click)="gotocall()">
+			  6758989966
+			  <div style="display: inline-block;margin-left: 40px;">
+			  <ion-icon name="call" ></ion-icon>
+			  </div></td>
+			<td>Smurflane wkfjnkn kkfkfn jjjjjklll nnnjjiionnl</td>
+			<td>
+			  <ion-icon name="create" (click)="edit()"></ion-icon>
+			  <div style="display: inline-block;margin-left: 40px;">
+			  <ion-icon name="trash" ></ion-icon>
+			  </div>
+		  </td>
+		  </tr>
+	  
+		  </tbody>
+	  </table>
+  </ion-content>
+  

@@ -1,0 +1,70 @@
+<ion-content class="content">
+    
+    <div class="contaier-login">
+        <ion-grid>
+            <ion-row justify-content-center>
+                <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+                    <h1 >Sign Up</h1>
+                </ion-col>
+            </ion-row>
+           
+            <ion-row>
+                <ion-col>
+                    <ion-list>
+                      <ion-item>
+                          <ion-icon  name="person" item-left></ion-icon>
+                         <ion-input type="text" required [(ngModel)]="user.name" placeholder="Full Name"></ion-input>
+                     </ion-item>
+                     <br />
+                        <ion-item>
+                          <ion-icon  name="contact" item-left></ion-icon>
+                            <ion-input type="text" required  [(ngModel)]="user.email" placeholder="Email"></ion-input>
+                        </ion-item>
+                        <br />
+                        <ion-item>
+                            <ion-icon  name="contact" item-left></ion-icon>
+                              <ion-input type="text" required  [(ngModel)]="user.compId" placeholder="Company ID"></ion-input>
+                          </ion-item>
+                          <br />
+                         <ion-item>
+                              <ion-icon  name="lock" item-left></ion-icon>
+                              <ion-input placeholder="Password" [(ngModel)]="user.password" [type]="showPassword ? 'text' : 'password'" clearOnEdit="false"></ion-input>
+                              <button (click)="onPasswordToggle()" ion-button clear small item-end icon-only>
+                                <ion-icon [name]="showPassword ? 'eye-off' : 'eye'"></ion-icon>
+                              </button>
+                            </ion-item>
+                        <br />
+                        <!-- <ion-item>
+                          <ion-icon  name="person" item-left></ion-icon>
+                         <ion-input type="text" required [(ngModel)]="user.company_name" placeholder="Company Name"></ion-input>
+                     </ion-item> -->
+  
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+   
+            <ion-row>
+                <ion-col>
+                    <button ion-button full  color="success" (click)="signup(user)">
+                        Register 
+                    </button>
+                </ion-col>
+            </ion-row>
+           
+           
+            <ion-row>
+              <ion-col style="text-align: center;font-size: medium;">
+                  Already have an account  ?
+               </ion-col>
+            </ion-row>
+  
+            <ion-row (click)="login()">
+              <ion-col style="text-align: center;font-weight: bold;font-size: large;">
+                  Try to Log in
+               </ion-col>
+            </ion-row>
+          
+        </ion-grid>
+    </div>
+  
+  </ion-content>

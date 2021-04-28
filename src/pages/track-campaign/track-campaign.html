@@ -1,0 +1,96 @@
+<ion-header>
+
+  <ion-navbar>
+    
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Track Campaigns</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  
+  <ion-searchbar showCancelButton="always" style="width: 100%;"></ion-searchbar>
+  
+      <ion-segment [(ngModel)]="Segments" value="1" mode="ios" style="width: 100%;">
+          <ion-segment-button value="1">
+              Active
+          </ion-segment-button>
+          <ion-segment-button (ionSelect)="Segments = 2" value="2" >
+              Archived
+          </ion-segment-button>
+      </ion-segment>
+      
+
+      <div [ngSwitch]="Segments">
+          <div *ngSwitchCase="1" >
+            <br>
+          <table>
+            <thead>
+            <tr>
+              <th>Compaigns Name</th>
+              <th>Manager</th>
+              <th>Pending Call</th>
+              <th>Pending Meeting</th>
+              <th>Total Lead</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+
+            <tbody *ngFor="let product of products " >
+            <tr *ngIf="product.active == true ">
+              <td style="text-decoration: underline;color:blue" (click)="gotoActive(product)">{{product.name}}</td>
+              <td>{{product.manager}}</td>
+              <td>{{product.pendingCalls}}</td>
+              <td>{{product.pendingMeets}}</td>
+              <td   style="text-decoration: underline;color:blue" (click)="leads(product)" >{{product.totalLeads}}</td>
+              <td> 
+                <ion-icon name="trash" class="deleteicon" (click)="showPopup(product.cid)"></ion-icon>
+                <p (click)="archive(product)">Archive</p>
+            </td>
+            </tr>
+           
+            </tbody>
+          </table>
+          <!-- <p>0 overdue follow-ups , 10 follow up for today , abc Manager</p> -->
+          </div>
+
+        
+          <div *ngSwitchCase="2" >
+            <br>
+          <table>
+            <thead>
+            <tr>
+              <th>Compaigns Name</th>
+              <th>Manager</th>
+              <th>Pending Call</th>
+              <th>Pending Meeting</th>
+              <th>Total Lead</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+
+            <tbody *ngFor="let product of products | async" >
+            <tr *ngIf="product.active == false ">
+              <td style="text-decoration: underline;color:blue" (click)="gotoActive(product)">{{product.name}}</td>
+              <td>{{product.manager}}</td>
+              <td>{{product.pendingCalls}}</td>
+              <td>{{product.pendingMeet}}</td>
+              <td   style="text-decoration: underline;color:blue" (click)="leads(product)" >{{product.totalLeads}}</td>
+              <td> 
+                <ion-icon name="trash" class="deleteicon" (click)="showPopup(product.cid)"></ion-icon>
+                <p (click)="active(product)">Active</p>
+            </td>
+            </tr>
+           
+            </tbody>
+          </table>
+          <!-- <p>0 overdue follow-ups , 10 follow up for today , abc Manager</p> -->
+          </div>
+      </div>
+      </ion-content>
+
+
