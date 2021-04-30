@@ -8,85 +8,120 @@
   
   
   <ion-content padding="true" class="has-header">
-	<!-- <ion-item>
-	  <ion-label>Assign to Handler</ion-label>
-	  <ion-select >
-		<ion-option>Handler 1</ion-option>
-		<ion-option >Handler 2</ion-option>
-		<ion-option >Handler 3</ion-option>
-	  </ion-select>
-	</ion-item> -->
-	<ion-searchbar showCancelButton="always" style="width: 100%;"></ion-searchbar>
-	<table>
-		  <thead>
+	
+	
+	<ion-searchbar placeholder="Search" (ionInput)="getItems($event)" [(ngModel)]="terms"  showCancelButton="always" style="width: 50%;"></ion-searchbar>
+	<ion-icon style="display: inline-block;font-size: 1.6em" name="settings" (click)="hide2()"></ion-icon>
+	<button ion-button  color="success" (click)="add()"> Add New Lead</button> 
+
+	
+	<div *ngIf="hideMe">  
+		<ion-footer>
+		<button ion-button  color="success" (click)="hide1()"> Assign Handler</button> 
+		</ion-footer>
+    </div>
+
+  <div *ngIf="hideMe1"> 
+	<ion-footer>
+  <ion-item style="width: 50%;">
+		<ion-label>Sale Representative</ion-label>
+		<ion-select [(ngModel)]="prod" (ionChange)="insertsr(prod)">
+		<ion-option *ngFor="let prod of productss" [value]="prod">{{prod.name}}&nbsp;{{prod.last}}</ion-option>
+		</ion-select>
+	</ion-item>
+	</ion-footer>                            
+  </div>
+    
+  <table > 
+		
+	<thead *ngIf="hideMe2"> 
+		<hr/>	
+	  
+	  <td *ngFor="let product of products ; let idx = index;">
+		  <input type="checkbox" checked="checked" />{{products[idx].value}}</td>
+		  <td><input type="checkbox" checked="checked" />Handler</td>
+	  <td><input type="checkbox" checked="checked" />Action</td>
+	  <td><input type="checkbox" checked="checked" />Follow up</td>
+	  <td><input type="checkbox" checked="checked" />Status</td>
+	  <td><input type="checkbox" checked="checked" />Remarks
+	  </td>  
+	  </thead>
+	  </table>
+	  <hr/>	
+	  
+	<div  style="overflow-x:auto">                                  
+	<table >   	
 		  <tr>
-			  <th>First Name</th>
-			  <th>Last Name</th>
-			  <th>Status</th>
+			  <th>
+				   All
+				<ion-checkbox slot="start" 
+				[(ngModel)]="masterCheck"    
+				[indeterminate]="isIndeterminate"
+				  (click)="checkMaster($event);"></ion-checkbox>
+				  
+					
+			  </th>
+			  <th *ngFor="let product of products ; let idx = index;">{{products[idx].value}}</th>		
+			  <th>Handler</th>
 			  <th>Action</th>
-			  <th>Phone </th>
-		<th>Previous Remark</th>
-		<th>Action</th>
+			  <th>Follow Up</th>
+			  <th>Status</th>
+			  <th>Remarks</th>
+			  <th>Edit/Delete</th>
 		  </tr>
-		  </thead>
+		  
 		  <tbody>
-		  <tr>
-			  <td style="text-decoration: underline;color: blue;" (click)="calldetails()" >James</td>
-			  <td>Matmanfmnn</td>
-			  <td>Chief</td>
-			  <td>Lettuce Green</td>
-			  <td style="text-decoration: underline;color: blue;" (click)="gotocall()">
-				  6758989966
-				  <div style="display: inline-block;margin-left: 40px;">
-				  <ion-icon name="call" ></ion-icon>
-				  </div> </td>
-			  <td>Digby Green</td>
+			
+			  <tr *ngFor="let product of productsss ;let idx = index; ">
+				<td >
+					<ion-icon style="display: inline-block;font-size: 1.3em" name="call" (click)="calldetails()"></ion-icon>
+					<ion-checkbox slot="start" 
+					[(ngModel)]="product.isChecked" 
+					(ionChange)="checkEvent();"></ion-checkbox>
+					
+					 
+				</td>
+
+				<td  *ngFor="let produ of product.leads; let i = index;" >
+						  {{produ.action}}
+						  <div *ngIf="produ.isChecked == true " style="display: inline-block;margin-left: 40px;">
+								<ion-icon   name="call" (click)="gotocall(product.uid)" > </ion-icon>	
+						 </div>   
+						 <!-- <div *ngIf="produ.value == 'First Name' " style="display: inline-block;margin-left: 40px;">
+							<td  style=" text-decoration: underline;color : blue;" (click)="calldetails()" > </td>	
+					 </div>  -->
+				  </td>	
+				 
+			  <!-- <td style="text-decoration: underline;color : blue;" (click)="calldetails()" ></td> -->
+			  <td >{{product.SR_name}}</td>	  
+			  <td >{{product.action}}</td>
+			  <td >{{product.datetime}}</td>
+			  <td >{{product.status}}</td>
+			  <td >{{product.remark}}</td>
+			  
 			  <td> 
-				  <ion-icon name="create" (click)="edit()"></ion-icon>
-				  <div style="display: inline-block;margin-left: 40px;">
-				  <ion-icon name="trash" ></ion-icon>
+				  <ion-icon name="create" (click)="edit(product)"></ion-icon>
+				  <div style="display: inline-block;margin-left: 30px;">
+				  <ion-icon name="trash" (click)="showPopup(product.uid)"></ion-icon>
 				  </div>
 			  </td>
 		  </tr>
-		  <tr>
-			<td style="text-decoration: underline;color: blue;" (click)="calldetails()">The</td>
-			<td>Tick</td>
-			<td>Crimef</td>
-			<td>Blue</td>
-			<td style="text-decoration: underline;color: blue;" (click)="gotocall()">
-			  9876543267
-				  <div style="display: inline-block;margin-left: 40px;">
-				  <ion-icon name="call" ></ion-icon>
-				  </div>
-		  </td>
-			<td>John Smith</td>
-			<td>
-			  <ion-icon name="create" (click)="edit()"></ion-icon>
-			  <div style="display: inline-block;margin-left: 40px;">
-			  <ion-icon name="trash" ></ion-icon>
-			  </div>
-		   </td>
-		  </tr>
-		  <tr>
-			<td style="text-decoration: underline;color: blue;" (click)="calldetails()">Jokey</td>
-			<td>Smurf</td>
-			<td>Giving</td>
-			<td>White</td>
-			<td style="text-decoration: underline;color: blue;" (click)="gotocall()">
-			  6758989966
-			  <div style="display: inline-block;margin-left: 40px;">
-			  <ion-icon name="call" ></ion-icon>
-			  </div></td>
-			<td>Smurflane wkfjnkn kkfkfn jjjjjklll nnnjjiionnl</td>
-			<td>
-			  <ion-icon name="create" (click)="edit()"></ion-icon>
-			  <div style="display: inline-block;margin-left: 40px;">
-			  <ion-icon name="trash" ></ion-icon>
-			  </div>
-		  </td>
-		  </tr>
-	  
+		 
 		  </tbody>
 	  </table>
+	</div>
+
+	
+	  <!-- <pagination-controls style="float:right"  (pageChange)="p = $event"></pagination-controls> -->
+	  
+	  <div style="float:right;">
+		<b>Page no: {{pagination_clicked_count+1}}</b>
+		<button  ion-button color="primary" (click)="	prevPage(first)" [disabled]="disable_prev || !(pagination_clicked_count>0)">
+            Previous
+        </button>	
+		<button  ion-button color="primary" (click)="nextPage(last)" [disabled]="disable_next">
+            Next
+        </button>
+		
+	  </div>
   </ion-content>
-  

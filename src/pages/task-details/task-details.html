@@ -10,18 +10,18 @@
 <ion-content class="content"> 
   <div class="contaier">
   <ion-list>
-
+    <ion-item > 
+      {{data}} {{data1}}
+   </ion-item>
+  
     
    
-    <ion-item >
+    <ion-item > 
       <ion-label>Action</ion-label>
       
-      <!-- <ion-datetime [hidden]="!!myDate" pickerFormat="MMM DD, YYYY " (ngModelChange)="change(datePicker)" [(ngModel)]="myDate"></ion-datetime>
-      <ion-datetime [hidden]="!myDate"  #datePicker (ionCancel)="myDate=undefined" pickerFormat="HH:mm" [(ngModel)]="myTime"> </ion-datetime>
-     -->  
-     <ion-select placeholder="Select Action" (ionChange)="hide()"> 
-      <ion-option >Callback</ion-option>
-      <ion-option >Schedule Meet</ion-option>
+     <ion-select placeholder="Select Action" (ionChange)="hide()"  [(ngModel)]="leadd.action"> 
+      <ion-option value="Callback">Callback</ion-option>
+      <ion-option value="Schedule Meet">Schedule Meet</ion-option>
     </ion-select>
     <!-- <ion-icon item-end name="calendar"></ion-icon> -->
   </ion-item>
@@ -29,46 +29,50 @@
     <div *ngIf="hideMe"> 
       <ion-item> 
         <label style="color: black;">Follow Back</label> 
-        <input type="datetime-local"  name="datetime" style="height: 30px;width: 53%;">
+        <input type="date"  [(ngModel)]="leadd.datetime1" name="datetime" style="height: 30px;width: 53%;">
      </ion-item>
      </div>
      
     <ion-item>
       <ion-label>Status</ion-label>
-      <ion-select placeholder="Select Status">
-        <ion-option>Interested</ion-option>
-        <ion-option >Not Interested</ion-option>
+      <ion-select placeholder="Select Status" [(ngModel)]="leadd.selected_value" (ionChange)="Getselected(leadd.selected_value)" >
+        <ion-option  *ngFor="let product of products" [value]="product.status">{{product.status}}</ion-option>
       </ion-select>
     </ion-item>
-
+          
+   
+                                            
   <ion-item> 
-    <ion-textarea placeholder="Add Remark"></ion-textarea>
+    <ion-textarea placeholder="Add Remark" [(ngModel)]="leadd.remark"></ion-textarea>
   </ion-item>
 
-<button class="btn" ion-button full color="secondary" text-center (click)="hide1()" > Add Reference </button>
+<button ion-button full color="secondary" text-center (click)="hide1()" > Add Reference </button>
+
 <div *ngIf="hideMe1"> 
   <ion-item> 
-    <ion-input placeholder="First Name"></ion-input>
+    <ion-input placeholder="First Name" [(ngModel)]="leadref.first_name" ></ion-input>
  </ion-item>
  <ion-item> 
-  <ion-input placeholder="Last Name"></ion-input>
+  <ion-input placeholder="Last Name" [(ngModel)]="leadref.last_name"></ion-input>
 </ion-item>
 <ion-item> 
-  <ion-input placeholder="Email"></ion-input>
+  <ion-input placeholder="Email" [(ngModel)]="leadref.email"></ion-input>
 </ion-item>
 <ion-item> 
-  <ion-input placeholder="Phone"></ion-input>
+  <ion-input placeholder="Phone" [(ngModel)]="leadref.phone"></ion-input>
 </ion-item>
+<button ion-button full color="secondary" text-center (click)="Save(leadref)" > Save Reference </button>
 </div>
+
+
 </ion-list>
 
 
-<button class="btn"  ion-button  full  color="primary" text-center (click)="StartTask()">Save & Next Call</button>
-<button class="btn" ion-button full  color="primary" text-center (click)="StartTask()">Save & Stop</button>
-<button class="btn" ion-button full  color="primary" text-center (click)="StartTask()">Cancel</button>
+<button  ion-button   color="primary" text-center (click)="Task(leadd)">Save & Next Call</button>
+<button  ion-button   color="primary" text-center (click)="StartTask()">Save & Stop</button>
+<button  ion-button   color="primary" text-center (click)="StartTask()">Cancel</button>
 <br>
 </div>
-
+ 
 </ion-content>
-
 

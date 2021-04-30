@@ -45,8 +45,9 @@ export class LoginPage {
           firebase.auth().onAuthStateChanged((data) => {
             if (
               currentuser.photoURL &&
-              currentuser &&
-              data.emailVerified === true
+              currentuser 
+              // &&
+              // data.emailVerified === true
             ) {
               
               console.log(currentuser.displayName);
