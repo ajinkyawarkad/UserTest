@@ -94,8 +94,8 @@ export class LeadsDetailsPage {
         .collection("leads")
         .doc(this.array[i])
         .update({
-          sr_id: data.id,
-          sr_name: data.name + " " + data.last,
+          SR_id: data.id,
+          SR_name: data.name + " " + data.last,
         });
     }
     let alert = this.alertCtrl.create({
@@ -193,7 +193,7 @@ export class LeadsDetailsPage {
       .doc(currentuser.photoURL)
       .collection("Campaigns")
       .doc(this.value.cid)
-      .collection("leads")
+      .collection("leads").where('SR_id','==',currentuser.uid)
       .limit(this.pageSize)
       .get()
       .then((snaps) => {
@@ -235,7 +235,7 @@ export class LeadsDetailsPage {
       .doc("COM#" + currentuser.uid)
       .collection("Campaigns")
       .doc(this.value.cid)
-      .collection("leads")
+      .collection("leads").where('SR_id','==',currentuser.uid)
       .startAfter(last)
       .limit(this.pageSize)
       .get()
@@ -281,7 +281,7 @@ export class LeadsDetailsPage {
       .doc("COM#" + currentuser.uid)
       .collection("Campaigns")
       .doc(this.value.cid)
-      .collection("leads")
+      .collection("leads").where('SR_id','==',currentuser.uid)
       .endBefore(first)
       .limit(this.pageSize)
       .get()

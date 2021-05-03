@@ -102,7 +102,7 @@ export class TrackCampaignPage {
           .firestore()
           .collection("Company")
           .doc(currentuser.photoURL)
-          .collection("Campaigns").where('sr_id','array-contains',currentuser.uid)
+          .collection("Campaigns").where('SR_id','array-contains',currentuser.uid)
           .get() // Data Sorted SRwize===========================================================================>doc
           .then((doc) => {
             doc.docs.forEach((snap) => {  //===========Inside==>snap
@@ -115,7 +115,7 @@ export class TrackCampaignPage {
                 .doc(currentuser.photoURL)
                 .collection("Campaigns")
                 .doc(snap.data().cid)
-                .collection("leads").where('sr_id','==',currentuser.uid)
+                .collection("leads").where('SR_id','==',currentuser.uid)
                 .get()
                 .then((data) => { //==================Leadds Assign ==>data
                   total=data.docs.length;

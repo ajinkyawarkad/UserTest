@@ -119,7 +119,7 @@ export class TaskDetailsPage {
     ))
 
     firebase.firestore().collection('Company').doc(currentuser.photoURL).collection('Campaigns').doc(this.value.cid).collection('leads').doc(this.id).collection('History')
-    .doc('Activity1').update({
+    .doc('Activity1').set({
      data:firebase.firestore.FieldValue.arrayUnion({
        Time: new Date(),
        Action:leadd.action,
@@ -129,14 +129,33 @@ export class TaskDetailsPage {
        link:"https://google.com"
 
      }) 
-    })
-    let d = new Date().getDate;
+    },{merge:true})
+    var b = new Date().getMonth()+1;
 
+    var c = new Date().getFullYear();
+    var a = new Date().getDate();
+
+    let date = a+'-'+b+'-'+c;
+    let dat='';
+    dat=date;
+    
     firebase.firestore().collection('Company').doc(currentuser.photoURL).collection('Users').doc(currentuser.uid).collection('Report').
-    doc('Date').set(
+    doc(dat).set(
       {
-        Report:'Neet to Update'
-      }
+        data:firebase.firestore.FieldValue.arrayUnion({
+        Time: new Date(),
+       Action:leadd.action,
+      
+       FollowUp:leadd.datetime1,
+       Remark:leadd.remark,
+       name:this.id,
+       link:"https://google.com"
+
+
+
+        })
+       
+      },{merge:true}
     )
     
    
