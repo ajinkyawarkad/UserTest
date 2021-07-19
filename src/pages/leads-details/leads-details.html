@@ -49,7 +49,9 @@
 	  </table>
 	  <hr/>	
 	  
-	<div  style="overflow-x:auto">                                  
+	<div  style="overflow-x:auto">      
+		
+		
 	<table >   	
 		  <tr>
 			  <th>
@@ -61,8 +63,11 @@
 				  
 					
 			  </th>
-			  <th *ngFor="let product of products ; let idx = index;">{{products[idx].value}}</th>		
-			  <th>Handler</th>
+			  <!-- <th *ngFor="let product of products ; let idx = index;">{{products[idx].value}}</th>	 -->
+			  <th>First Name</th>	
+			  <th>Last Name</th>
+			  <th>Phone </th>
+			
 			  <th>Action</th>
 			  <th>Follow Up</th>
 			  <th>Status</th>
@@ -82,18 +87,25 @@
 					 
 				</td>
 
-				<td  *ngFor="let produ of product.leads; let i = index;" >
+				<!-- <td  *ngFor="let produ of product.leads; let i = index;" >
 						  {{produ.action}}
 						  <div *ngIf="produ.isChecked == true " style="display: inline-block;margin-left: 40px;">
 								<ion-icon   name="call" (click)="gotocall(product.uid)" > </ion-icon>	
-						 </div>   
+						 </div>    -->
 						 <!-- <div *ngIf="produ.value == 'First Name' " style="display: inline-block;margin-left: 40px;">
 							<td  style=" text-decoration: underline;color : blue;" (click)="calldetails()" > </td>	
 					 </div>  -->
-				  </td>	
-				 
+				  <!-- </td>	 -->
+
+			
+				  <td >{{product.first_name}}</td>
+				  <td >{{product.last_name}}</td>
+				  <td >{{product.Phone}} <div style="display: inline-block;margin-left: 40px;">
+					<ion-icon   name="call" (click)="gotocall(product.uid)" > </ion-icon>	
+			 </div> </td>
+
 			  <!-- <td style="text-decoration: underline;color : blue;" (click)="calldetails()" ></td> -->
-			  <td >{{product.SR_name}}</td>	  
+			  
 			  <td >{{product.action}}</td>
 			  <td >{{product.datetime}}</td>
 			  <td >{{product.status}}</td>

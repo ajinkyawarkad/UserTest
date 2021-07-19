@@ -33,6 +33,7 @@ export class TaskDetailsPage {
   id:any;
   data:any;
   data1:any;
+  arr:any=[];
  //refid:any;
   leadref = {} as Leadref;
   leadd = {} as Leadd;
@@ -63,7 +64,9 @@ export class TaskDetailsPage {
         var source = doc.metadata.hasPendingWrites ? "Local" : "Server";
         console.log(source, " data: "); 
         this.products =  doc.data().status ;
+        this.arr=this.products
          console.log(this.products) ;
+
  
     });
     
@@ -76,7 +79,10 @@ export class TaskDetailsPage {
 
   Getselected(selected_value)
   {
+    
+    
   console.log("selector: ",selected_value);
+  console.log('AAAAAAAAAAAA',this.arr.length) 
   if( "Inform Manager")
   {
     console.log("Message sent")

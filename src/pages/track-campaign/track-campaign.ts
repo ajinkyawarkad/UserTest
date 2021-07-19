@@ -46,7 +46,7 @@ export class TrackCampaignPage {
     let arr: any = [];
     let currentuser = firebase.auth().currentUser;
 
-    let a = "Ajinkya";
+    let a = "";
 
     firebase
       .firestore()
@@ -78,16 +78,17 @@ export class TrackCampaignPage {
     let total;
 
     //==================Total Leads Vs ADMIN=================================
-    // firebase
-    // .firestore()
-    // .collection("Company")
-    // .doc(currentuser.photoURL)
-    // .collection("Users")
-    // .doc(currentuser.uid)
-    // .get()
-    // .then((doc) => {
-    //   this.a = doc.data().function;
-    // })
+    firebase
+    .firestore()
+    .collection("Company")
+    .doc(currentuser.photoURL)
+    .collection("Users")
+    .doc(currentuser.uid)
+    .get()
+    .then((doc) => {
+      this.a = doc.data().function;
+      console.log(this.a)
+    })
 
     firebase
       .firestore()
@@ -183,6 +184,8 @@ export class TrackCampaignPage {
 
     console.log("ionViewDidLoad TrackCampaignPage");
   }
+
+  
   gotoActive(product) {
     this.navCtrl.push(EditCampaignsDetailsPage, {
       product: product,
